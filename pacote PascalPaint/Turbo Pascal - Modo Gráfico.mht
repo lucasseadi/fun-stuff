@@ -1,0 +1,1853 @@
+From: <Salvo pelo Microsoft Internet Explorer 7>
+Subject: =?Windows-1252?Q?Turbo_Pascal_-_Modo_Gr=E1fico?=
+Date: Sat, 28 Apr 2007 11:12:22 -0300
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0000_01C78986.18080430"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3028
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.unimep.br/~vmdzilio/grafico.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Turbo Pascal - Modo Gr=E1fico</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Diso-8859-1">
+<META content=3D"Ricardo A. de Almeida" name=3DAuthor>
+<META content=3D"MSHTML 6.00.6000.16414" name=3DGENERATOR></HEAD>
+<BODY text=3D#000000 vLink=3D#000099 aLink=3D#3333ff link=3D#3366ff =
+bgColor=3D#ffffff=20
+background=3Dhttp://www.unimep.br/~vmdzilio/marca.gif>
+<CENTER><A name=3DTopo></A><BR><IMG height=3D84=20
+src=3D"http://www.unimep.br/~vmdzilio/grafico.gif" width=3D287>=20
+<HR width=3D"100%">
+
+<P><B><FONT size=3D+2>Universidade Metodista de Piracicaba</FONT></B> =
+<BR><B><FONT=20
+size=3D+2>Centro de Ci=EAncias Exatas</FONT></B> <BR>&nbsp; <BR>&nbsp; =
+<BR>&nbsp;=20
+<BR>&nbsp; <BR>&nbsp;=20
+<P><B><U><FONT size=3D+1>TURBO PASCAL</FONT></U></B>=20
+<P><B><U><FONT size=3D+1>GR=C1FICO</FONT></U></B> <BR>&nbsp; <BR>&nbsp; =
+<BR>&nbsp;=20
+<BR>&nbsp;=20
+<P><IMG height=3D120 src=3D"http://www.unimep.br/~vmdzilio/livro.gif" =
+width=3D202>=20
+<BR>&nbsp; <BR>&nbsp; <BR>&nbsp; <BR>&nbsp; <BR>&nbsp; <BR>&nbsp;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Jos=E9 Antonio =
+D'Alkmin=20
+<HR width=3D"100%">
+</CENTER>
+<P><B>1.0 - Introdu=E7=E3o</B>=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No in=EDcio de todos os =
+programas=20
+gr=E1ficos existir=E3o certos passos que devem ser seguidos. Por =
+exemplo, temos que=20
+ajustar o hardware de v=EDdeo para o modo gr=E1fico. Al=E9m disso, temos =
+de restaurar=20
+a tela do computador para o modo normal de exibi=E7=E3o no final de =
+todos os=20
+programas gr=E1ficos. Na se=E7=E3o abaixo, veremos os componentes =
+b=E1sicos necess=E1rios=20
+em um programa gr=E1fico t=EDpico desenvolvido em Pascal. <BR>&nbsp; =
+<BR>&nbsp;=20
+<P><B>1.1 - Inicializa=E7=E3o da BGI</B>=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; O primeiro passo que todos =
+os=20
+programas gr=E1ficos devem dar =E9 inicializar o hardware gr=E1fico. Por =
+hardware=20
+entendemos a placa do adaptador de v=EDdeo que deve estar presente no =
+PC. Existem=20
+diversas placas gr=E1ficas diferentes dispon=EDveis para o PC, cada qual =
+com uma=20
+variedade de modos gr=E1ficos. A BGI (Borland Graphic Interface) oferece =
+suporte a=20
+muitos destes "modos". Utilizaremos o modo default da rotina de =
+inicializa=E7=E3o da=20
+BGI, o que por sua vez nos permitir=E1 ajustar o adaptador gr=E1fico =
+instalado no=20
+seu modo de maior resolu=E7=E3o. =
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A=20
+procedure da BGI usada para configurar o seu computador no modo =
+gr=E1fico chama-se=20
+InitGraph e possui a seguinte declara=E7=E3o:=20
+<P>procedure InitGraph(var GraphDriver, GraphMode: integer; DriverPath: =
+string);=20
+
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A procedure InitGraph =
+est=E1=20
+definida na unidade Graph do Pascal que deve ser inclu=EDda na se=E7=E3o =
+uses de todos=20
+os programas gr=E1ficos. Este arquivo cont=E9m as estruturas de dados, =
+constantes,=20
+procedures e fun=E7=F5es da BGI. =
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Os=20
+dois primeiros par=E2metros especificados em initgraph identificam a =
+placa de=20
+v=EDdeo instalada e o modo gr=E1fico a ser utilizado. O terceiro =
+par=E2metro=20
+especifica o path onde se encontram os drivers para gr=E1fico do Turbo =
+Pascal.=20
+(Existe pelo menos um driver gr=E1fico para cada adaptador gr=E1fico). =
+Os arquivos=20
+dos drivers s=E3o os que terminam todos com a extens=E3o .BGI .=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No pr=F3ximo exemplo, =
+InitGraph=20
+pesquisa o diret=F3rio atual para encontrar os arquivos de drivers.:=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;=20
+InitGraph(Gdriver, Gmode, ' '); <BR>&nbsp; <BR>&nbsp;=20
+<P><B>1.2 - Escrita de um Programa B=E1sico usando a BGI</B>=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; O programa a seguir =E9=20
+provavelmente o menor programa gr=E1fico que podemos escrever em Turbo =
+Pascal.=20
+Este programa =E9 apenas para enfatizar a estrutura b=E1sica de um =
+programa gr=E1fico=20
+t=EDpico em Pascal. Podemos us=E1-lo como esqueleto para nossos =
+pr=F3prios programas=20
+gr=E1ficos.=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+<I>Program</I> SmallestGraphicsProgram;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+<I>Uses</I>=20
+Graph;&nbsp;&nbsp;&nbsp; { unidade gr=E1fica do Turbo Pascal }=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+<I>Const</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;=20
+Gdriver: integer =3D Detect;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+<I>Var</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;=20
+Gmode: integer; =
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+<I>Begin</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;=20
+InitGraph(Gdriver, Gmode, 'c:\bp\bgi');&nbsp;&nbsp; { Inicializa o modo =
+Gr=E1fico=20
+}=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+{ Coloque os comandos para desenho nesta =E1rea !! }=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;=20
+CloseGraph;&nbsp;&nbsp; { Finaliza o Modo Gr=E1fico }=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+<I>End.</I>=20
+<BR>&nbsp; <BR>&nbsp; <BR>
+<CENTER>
+<P>A Tabela abaixo demonstra os drivers e suas respectivas =
+resolu=E7=F5es</CENTER>
+<CENTER>
+<TABLE bgColor=3D#ffff99 border=3D1>
+  <TBODY>
+  <TR>
+    <TD bgColor=3D#000099>
+      <CENTER><B><FONT color=3D#ffffff>Valor</FONT></B></CENTER></TD>
+    <TD bgColor=3D#000099>
+      <CENTER><B><FONT=20
+color=3D#ffffff>&nbsp;Resolu=E7=E3o&nbsp;</FONT></B></CENTER></TD>
+    <TD bgColor=3D#000099>
+      <CENTER><B><FONT color=3D#ffffff>Valor</FONT></B></CENTER></TD>
+    <TD bgColor=3D#000099>
+      <CENTER><B><FONT=20
+  =
+color=3D#ffffff>&nbsp;Resolu=E7=E3o&nbsp;</FONT></B></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;CGAC0</B></TD>
+    <TD>
+      <CENTER><I>320x200</I></CENTER></TD>
+    <TD><B>&nbsp;EGALo</B></TD>
+    <TD>
+      <CENTER><I>640x200</I></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;CGAC</B></TD>
+    <TD>
+      <CENTER><I>320x200</I></CENTER></TD>
+    <TD><B>&nbsp;EGAHi</B></TD>
+    <TD>
+      <CENTER><I>640x350</I></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;CGAC2</B></TD>
+    <TD>
+      <CENTER><I>320x200</I></CENTER></TD>
+    <TD><B>&nbsp;EGA64Lo</B></TD>
+    <TD>
+      <CENTER><I>640x200</I></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;CGAC3</B></TD>
+    <TD>
+      <CENTER><I>320x200</I></CENTER></TD>
+    <TD><B>&nbsp;EGA64Hi</B></TD>
+    <TD>
+      <CENTER><I>640x350</I></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;CGAHi</B></TD>
+    <TD>
+      <CENTER><I>640x200</I></CENTER></TD>
+    <TD><B>&nbsp;ATT400C0</B></TD>
+    <TD>
+      <CENTER><I>320x200</I></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;MCGAC0</B></TD>
+    <TD>
+      <CENTER><I>320x200</I></CENTER></TD>
+    <TD><B>&nbsp;ATT400C1</B></TD>
+    <TD>
+      <CENTER><I>320x200</I></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;MCGAC1</B></TD>
+    <TD>
+      <CENTER><I>320x200</I></CENTER></TD>
+    <TD><B>&nbsp;ATT400C2</B></TD>
+    <TD>
+      <CENTER><I>320x200</I></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;MCGAC2</B></TD>
+    <TD>
+      <CENTER><I>320x200</I></CENTER></TD>
+    <TD><B>&nbsp;ATT400C3</B></TD>
+    <TD>
+      <CENTER><I>320x200</I></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;MCGAC3</B></TD>
+    <TD>
+      <CENTER><I>320x200</I></CENTER></TD>
+    <TD><B>&nbsp;ATT400Med&nbsp;</B></TD>
+    <TD>
+      <CENTER><I>640x200</I></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;MCGAMed</B></TD>
+    <TD>
+      <CENTER><I>640x200</I></CENTER></TD>
+    <TD><B>&nbsp;ATT400Hi</B></TD>
+    <TD>
+      <CENTER><I>640x400</I></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;MCGAHi</B></TD>
+    <TD>
+      <CENTER><I>640x480</I></CENTER></TD>
+    <TD><B>&nbsp;IBM8514Lo&nbsp;</B></TD>
+    <TD>
+      <CENTER><I>640x480</I></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;EGAMonoHi&nbsp;</B></TD>
+    <TD>
+      <CENTER><I>640x350</I></CENTER></TD>
+    <TD><B>&nbsp;IBM8514Hi&nbsp;</B></TD>
+    <TD>
+      <CENTER><I>1024x768</I></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;HercMonoHi&nbsp;</B></TD>
+    <TD>
+      <CENTER><I>720x348</I></CENTER></TD>
+    <TD><B>&nbsp;PC3270Hi</B></TD>
+    <TD>
+      <CENTER><I>720x350</I></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;VGALo</B></TD>
+    <TD>
+      <CENTER><I>640x200</I></CENTER></TD>
+    <TD><B>&nbsp;VGAHi</B></TD>
+    <TD>
+      <CENTER><I>640x480</I></CENTER></TD></TR>
+  <TR>
+    <TD><B>&nbsp;VGAMed</B></TD>
+    <TD>
+      <CENTER><I>640x350</I></CENTER></TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD></TR></TBODY></TABLE></CENTER><BR>&nbsp;=20
+<P><B>2.0 - Trabalhando com coordenadas</B>=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nos gr=E1ficos, =
+acompanhamos as=20
+nossas posi=E7=F5es usando coordenadas de pixels. Os pixels s=E3o pontos =
+muitos=20
+pequenos que se v=EA na tela e que podem ser endere=E7ados usando um =
+sistema de=20
+coordenadas familiar =E0 forma por que acessamos as linhas e colunas de =
+uma=20
+estrutura de dados bidimensional.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; O Turbo Pascal =
+apresenta=20
+duas fun=E7=F5es que obt=E9m o n=FAmero m=E1ximo de pixels tanto no eixo =
+x (GetMaxX)=20
+quanto no eixo y (GetMaxY). =
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+Endere=E7amento por linha e coluna da tela. <BR>&nbsp; <BR>&nbsp; =
+<BR><BR>
+<CENTER>
+<P><IMG height=3D298 src=3D"http://www.unimep.br/~vmdzilio/pixel.gif"=20
+width=3D399></CENTER>
+<P><BR><BR><BR><BR><BR><BR><BR>
+<P><B>2.0 =96 Comandos para Desenhos</B>=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+Arc (X,Y; Integer; StAngle, EndAngle, Radius; Word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; O Arco vai desde StAngle =
+(=E2ngulo=20
+de in=EDcio) at=E9 EndAngle (=E2ngulo final), com raio Radius usando =
+(x,y) como ponto=20
+central. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+Bar(x1, y1, x2, y2: Integer);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bar desenha um ret=E2ngulo =
+
+preenchido. Usa o preenchimento e cores definidos por SetFillStyle ou=20
+SetFillPattern. Para desenhar uma barra sem preenchimento, utiliza 3D.=20
+<BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+Bar3D(x1, y1, x2, y2: Integer; Depth: Word; Top: Boolean);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bar3D desenha uma barra =
+pintada e=20
+em tr=EAs dimens=F5es usando o preenchimento e cores definidos por =
+SetFillStyle ou=20
+SetFillPattern. A linha 3d da barra =E9 desenhada no estilo de linha =
+corrente e=20
+cores como ajustados pelo SetLineStyle e SetColor. Depth =E9 a largura =
+em pixeis=20
+da linha 3-D. Se Top for Topon (constante que significa true), um topo =
+3-D =E9=20
+colocado na barra, se Top for Topoff (constange que significa false) o =
+topo n=E3o=20
+=E9 colocado na barra. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+Circle(X,Y: Integer; Radius: Word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Desenha um c=EDrculo na =
+cor corrente=20
+estabelecida por SetColor. Cada Driver Gr=E1fico cont=E9m um aspect raio =
+usado por=20
+Circle, Arc e PieSlice. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+ClearDevice;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ClearDevice move a =
+posi=E7=E3o=20
+corrente para (0, 0), apaga a tela usando a cor de fundo estabelecida =
+por=20
+SetBkColor, e prepara para sa=EDda de dados. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+ClearViewPort;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ClearViewPort aplica a cor =
+de=20
+preenchimento para a cor de fundo (Palette[0]) e move a posi=E7=E3o =
+corrente para=20
+(0, 0). <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+CloseGraph;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CloseGraph&nbsp; restaura =
+o modo=20
+de v=EDdeo utilizado antes da biblioteca gr=E1fica ser inicializada. =
+<BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+DetectGraph( Gdriver, Gmodo: integer);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DetectGraph retorna o =
+valor de=20
+driver e modo detectados que podem ser utilizados em InitGraph para =
+inicializar=20
+o modo gr=E1fico usando o driver e modo corretos detectados para o =
+hardware=20
+gr=E1fico instalado na m=E1quina. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+DrawPoly(NumPoints: word; var PolyPoints)=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DrawPoly desenha as linhas =
+de um=20
+pol=EDgono a cor e estilo correntes de linha.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NumPoints: especifica o =
+n=FAmero de=20
+pontos contidos na vari=E1vel PolyPoints.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PolyPoints: uma =
+vari=E1vel do tipo=20
+PointType. <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PointType =3D =
+Record=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+x, y: integer;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;=20
+End; <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+Ellipse(X,Y: integer; StAngle, EndAngle: Word; Xradius, Yradius: word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Desenha um arco =
+el=EDptico.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Desenha o arco iniciando =
+em=20
+Stangle at=E9 EndAngle com Xradius de Raio X e Yradius de Raio Y. =
+<BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+FillEllipse(x,y: integer; Xradius, Yradius: integer);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Desenha uma el=EDpse =
+pintada.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (x,y) =E9 o ponto =
+central;&nbsp;=20
+Xradius e Yradius s=E3o os eixos horizontal e vertical respectivamente. =
+<BR>&nbsp;=20
+
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+FillPoly(NumPoints: Word; var PolyPoints);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Desenha um pol=EDgono =
+preenchido com=20
+a cor e o estilo de preenchimento correntes.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NumPoints:&nbsp; =
+representa o=20
+n=FAmero de pontos que formam o pol=EDgono.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PolyPoints:&nbsp; =
+vari=E1vel sem=20
+tipo que cont=E9m coordenadas de cada ponto. (Geralmente =E9 utilizada =
+uma vari=E1vel=20
+do tipo PointType). <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+FloodFill(x,y: integer; border: Word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Preenche uma =E1rea =
+fechada=20
+iniciando em x,y e vai se alimentando at=E9 encontrar uma =
+delimita=E7=E3o com cor=20
+diferente utilizando as configura=E7=F5es correntes de preenchimento e =
+pintura.=20
+<BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetBkColor: Word;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna a cor de fundo de =
+tela=20
+utilizada atualmente (Um valor de 0 a 15) no caso de um VGA. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetColor: Word;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna a cor do pincel =
+utilizada=20
+para desenhar linhas, etc. (Um valor de 0 a 15) no caso de um VGA. =
+<BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetDefaultPalette(var Palette: PaletteType);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna as cores originais =
+da=20
+paleta de cores para a vari=E1vel Palette do tipo PalleteType.=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Const=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;=20
+Maxcolors =3D 15;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+PaletteType =3D Record=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;=20
+Size: byte;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;=20
+Colors: array[0..MaxColors] of shortint;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetDriverName: String;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna uma string =
+contendo o nome=20
+do driver atual utilizado para inicializar o modo gr=E1fico. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetGraphMode: integer;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna um n=FAmero que =
+corresponde=20
+ao modo atual de v=EDdeo utilizado pela biblioteca gr=E1fica. (Verificar =
+Lista P=E1g.=20
+2). <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+GetImage(x1, y1, x2, y2: integer; var BitMap);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Salva a imagem bit a bit =
+contida=20
+no espa=E7o x1, y1, x2, y2 e salva para um buffer (BitMap).=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ex.:=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Var=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;=20
+Size: Word;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;=20
+BitMap: Pointer;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Begin=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;=20
+...=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;=20
+size:=3D ImageSize(100, 100, 150, 150);&nbsp; { Retorna o n=BA de bytes =
+necess=E1rios=20
+p/ guardar a imagem }=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;=20
+getmem(BitMap, size);&nbsp; { Aloca essa quantia de mem=F3ria }=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;=20
+getimage(100, 100, 150, 150, BitMap); { salva a imagem }=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;=20
+... =
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+End.=20
+<BR>&nbsp;=20
+<CENTER>
+<TABLE bgColor=3D#ffff99 border=3D1>
+  <TBODY>
+  <TR>
+    <TD bgColor=3D#000099>
+      <CENTER><B><FONT=20
+color=3D#ffffff>&nbsp;Constante&nbsp;</FONT></B></CENTER></TD>
+    <TD bgColor=3D#000099>
+      <CENTER><B><FONT =
+color=3D#ffffff>&nbsp;Valor&nbsp;</FONT></B></CENTER></TD>
+    <TD bgColor=3D#000099>
+      <CENTER><B><FONT =
+color=3D#ffffff>Descri=E7=E3o</FONT></B></CENTER></TD></TR>
+  <TR>
+    <TD>&nbsp;CopyPut&nbsp;</TD>
+    <TD>
+      <CENTER>0</CENTER></TD>
+    <TD>&nbsp;Copia a imagem como se encontra</TD></TR>
+  <TR>
+    <TD>&nbsp;XorPut</TD>
+    <TD>
+      <CENTER>1</CENTER></TD>
+    <TD>&nbsp;Faz um xor da imagem com o conte=FAdo atual da =
+tela&nbsp;</TD></TR>
+  <TR>
+    <TD>&nbsp;OrPut</TD>
+    <TD>
+      <CENTER>2</CENTER></TD>
+    <TD>&nbsp;Faz um or da imagem com o conte=FAdo atual da =
+tela</TD></TR>
+  <TR>
+    <TD>&nbsp;AndPut</TD>
+    <TD>
+      <CENTER>3</CENTER></TD>
+    <TD>&nbsp;Faz um and da imagem com o conte=FAdo atual da =
+tela&nbsp;</TD></TR>
+  <TR>
+    <TD>&nbsp;NotPut</TD>
+    <TD>
+      <CENTER>4</CENTER></TD>
+    <TD>&nbsp;Copia o inverso da =
+imagem</TD></TR></TBODY></TABLE></CENTER>
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetLineSettings(var LineInfo: LineSettingsType);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna o estilo de linha=20
+corrente. =
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+LineSettingsType =3D Record=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+LineStyle: Word;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+Pattern: Word;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+ThickNess: Word;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+End; <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetMaxColor: word;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna o n=BA m=E1ximo de =
+cores=20
+suportado pelo driver gr=E1fico atualmente utilizado. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetMaxX: integer;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna o n=BA m=E1ximo de =
+pixels=20
+suportado pela resolu=E7=E3o X. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetMaxY: integer;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna o n=BA m=E1ximo de =
+pixels=20
+suportado pela resolu=E7=E3o Y. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetPalette(Palette: PaletteType);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna a paleta de cores=20
+utilizada atualmente e seu tamanho para uma vari=E1vel do tipo =
+PaletteType.=20
+<BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetPaletteSize: integer;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna o n=BA m=E1ximo de =
+cores=20
+suportado pela paleta de cores do modo gr=E1fico atual. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetPixel(x,y: integer): word;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna a cor atual do =
+pixel de=20
+coordenada (x,y). <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetTextSettings(var TextInfo: TextSettingsType);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna as =
+configura=E7=F5es atuais de=20
+texto (fonte, tamanho, etc) para uma vari=E1vel do tipo =
+TextSettingsType.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+TextSettingsType =3D Record=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+Font: Word;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+Direction: Word;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+CharSize: Word;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+Horiz: Word;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+Vert: Word;=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+End; <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetX;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna a coordenada X a =
+ser=20
+utilizada. (Posi=E7=E3o X do Cursor). <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+GetY;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna a coordenada Y a =
+ser=20
+utilizada. (Posi=E7=E3o Y do Cursor). <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+ImageSize(x1, y1, x2, y2: integer): Word;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna o n=BA de bytes =
+necess=E1rios=20
+para armazenar uma regi=E3o retangular delimitada por (x1, y1, x2, y2) =
+na mem=F3ria.=20
+<BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+InitGraph(var gDriver: Integer, var gMode: Integer, PathtoDriver: =
+String);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Inicializa o modo =
+gr=E1fico com o=20
+modo e driver especificados. =C9 necess=E1rio tamb=E9m, especificar o =
+caminho onde se=20
+encontram os drivers da BGI em PathtoDriver. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+Line(x1, y1, x2, y2: integer);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Desenha uma linha com as=20
+configura=E7=F5es estabelecidas em SetLineStyle que vai do ponto 1(x1, =
+y1) at=E9 o=20
+ponto 2(x2, y2). <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+LineRel(x1,y1: integer);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Desenha uma linha que vai =
+desde a=20
+posi=E7=E3o atual do cursor (x0, y0) at=E9 a posi=E7=E3o (x0+x1), =
+(y0+y1). <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+LineTo(x, y: integer);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Desenha uma linha que vai =
+desde a=20
+posi=E7=E3o atual do cursor (x0, y0) at=E9 o ponto especificado (x,y). =
+<BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+MoveRel(Dx, Dy: integer);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Move a posi=E7=E3o atual =
+do cursor=20
+(x0, y0) at=E9 a posi=E7=E3o (x0+Dx, y0+Dy). <BR>&nbsp; <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Moveto(x,=20
+y: integer);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Move a posi=E7=E3o atual =
+do cursor=20
+(x0, y0) para a posi=E7=E3o especificada (x,y). <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+OutText(TextString: String);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Manda uma string para o=20
+dispositivo de Sa=EDda (Tela) na posi=E7=E3o atual do cursor. <BR>&nbsp; =
+
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+OutTextXY(x,y: integer; TextString: String);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Manda uma string para o=20
+dispositivo de Sa=EDda (Tela) na posi=E7=E3o especificada (x, y). =
+<BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+PieSlice(x, y: integer; StAngle, EndAngle, Radius: Word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Desenha e pinta uma =
+=93peda=E7o de=20
+torta=94 com as coordenadas especificadas.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+(x,y) =96=20
+Ponto Central.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Inicia=20
+com o =E2ngulo StAngle e termina com o =E2ngulo EndAngle. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+PutImage(x,y: integer; var Bitmap; Bitblt: Word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (x, y) =96 =E9 o canto =
+superior=20
+esquerdo o qual a figura ser=E1 iniciada.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bitmap =96 =E9 uma =
+vari=E1vel sem tipo=20
+que cont=E9m a imagem a ser colocada na tela.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BitBlt =96 =E9 uma =
+opera=E7=E3o booleana=20
+a ser realizada na plotagem de cada pixel da figura.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BitBlt pode ser:=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NormalPut, OrPut, XorPut, =
+NotPut=20
+ou AndPut. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+PutPixel(x,y: integer; pixel: word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Desenha um pixel na =
+coordenada=20
+especificada (x, y) com a cor =93pixel=94 que =E9 uma word. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+Rectangle(x1, y1, x2, y2: integer);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Desenha um ret=E2ngulo na =
+=E1rea=20
+retangular delimitada por (x1,y1) e (x2, y2) com os estilos de cor e =
+linhas=20
+atuais. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Procedure =
+SetAllPalette(var=20
+Palette);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Altera todas as cores da =
+paleta de=20
+cores para as especificadas na vari=E1vel Palette que pode ser do tipo=20
+PaletteType. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+SetAspectRatio(xAsp, yAsp: integer): Word;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; O Aspect Ratio =E9 =
+utilizado para=20
+desenhar c=EDrculos. Se diminuirmos o valor default, obteremos maior =
+corre=E7=E3o e=20
+precis=E3o. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+SetBkColor(ColorNum: Word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Altera a cor do fundo da =
+tela para=20
+a cor especificada em ColorNum. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+SetColor(Color: Word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Altera a cor de desenho =
+usando a=20
+paleta de cores. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+SetFillPattern(Patern: FillPatternType; Color: Word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Altera o estilo de =
+preenchimento=20
+para um estilo definido pelo usu=E1rio=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+FillPatternType =3D Array[1..8] of byte;=20
+<CENTER>
+<P>Padr=F5es de Preenchimento Pr=E9-Definidos</CENTER>
+<CENTER>
+<TABLE bgColor=3D#ffff99 border=3D1>
+  <TBODY>
+  <TR>
+    <TD bgColor=3D#000099>
+      <CENTER><B><FONT=20
+color=3D#ffffff>&nbsp;Constante&nbsp;</FONT></B></CENTER></TD>
+    <TD bgColor=3D#000099>
+      <CENTER><B><FONT =
+color=3D#ffffff>&nbsp;Valor&nbsp;</FONT></B></CENTER></TD>
+    <TD bgColor=3D#000099>
+      <CENTER><B><FONT =
+color=3D#ffffff>Descri=E7=E3o</FONT></B></CENTER></TD></TR>
+  <TR>
+    <TD>&nbsp;EmptyFill</TD>
+    <TD>
+      <CENTER>0</CENTER></TD>
+    <TD>&nbsp;Preenche com a cor de fundo</TD></TR>
+  <TR>
+    <TD>&nbsp;SolidFill</TD>
+    <TD>
+      <CENTER>1</CENTER></TD>
+    <TD>&nbsp;Preenche completamente com a cor de =
+preenchimento</TD></TR>
+  <TR>
+    <TD>&nbsp;LineFill</TD>
+    <TD>
+      <CENTER>2</CENTER></TD>
+    <TD>&nbsp;Preenche usando linhas horizontais</TD></TR>
+  <TR>
+    <TD>&nbsp;LtSlashFill</TD>
+    <TD>
+      <CENTER>3</CENTER></TD>
+    <TD>&nbsp;Preenche usando linhas finas inclinadas</TD></TR>
+  <TR>
+    <TD>&nbsp;SlashFill</TD>
+    <TD>
+      <CENTER>4</CENTER></TD>
+    <TD>&nbsp;Preenche usando linhas espessas inclinadas</TD></TR>
+  <TR>
+    <TD>&nbsp;BkSlashFill</TD>
+    <TD>
+      <CENTER>5</CENTER></TD>
+    <TD>&nbsp;Preenche usando linhas espessas inclinadas da direita p/ a =
+
+      esquerda&nbsp;</TD></TR>
+  <TR>
+    <TD>&nbsp;LtBkSlashFill&nbsp;</TD>
+    <TD>
+      <CENTER>6</CENTER></TD>
+    <TD>&nbsp;Preenche usando linhas finas inclinadas da direita p/ a=20
+    esquerda</TD></TR>
+  <TR>
+    <TD>&nbsp;HatchFill</TD>
+    <TD>
+      <CENTER>7</CENTER></TD>
+    <TD>&nbsp;Preenche usando um padr=E3o hachurado leve</TD></TR>
+  <TR>
+    <TD>&nbsp;XhatchFill</TD>
+    <TD>
+      <CENTER>8</CENTER></TD>
+    <TD>&nbsp;Preenche usando um padr=E3o xadrez espesso</TD></TR>
+  <TR>
+    <TD>&nbsp;InterleaveFill</TD>
+    <TD>
+      <CENTER>9</CENTER></TD>
+    <TD>&nbsp;Preenche usando um padr=E3o formado por linhas =
+intercaladas</TD></TR>
+  <TR>
+    <TD>&nbsp;WideDotFill</TD>
+    <TD>
+      <CENTER>10</CENTER></TD>
+    <TD>&nbsp;Preenche usando pontos largamente espa=E7ados</TD></TR>
+  <TR>
+    <TD>&nbsp;CloseDotFill</TD>
+    <TD>
+      <CENTER>11</CENTER></TD>
+    <TD>&nbsp;Preenche usando pontos bastante=20
+pr=F3ximos</TD></TR></TBODY></TABLE></CENTER><BR>&nbsp;=20
+<CENTER>
+<P>Padr=F5es de Preenchimento Pr=E9-Definidos <BR><IMG height=3D417=20
+src=3D"http://www.unimep.br/~vmdzilio/texture.gif" width=3D554></CENTER>
+<P><BR><BR><BR><BR><BR><BR>
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+SetFillStyle(Pattern: Word; Color: Word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Altera a cor e estilo de=20
+preenchimento para um estilo j=E1 existente na BGI. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+SetLineStye(LineStyle: Word; Pattern: Word; ThickNess: Word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Altera o estilo de =
+preenchimento=20
+da linha.=20
+<CENTER>
+<P>Estilos de Linhas</CENTER>
+<CENTER>
+<TABLE bgColor=3D#ffff99 border=3D1>
+  <TBODY>
+  <TR>
+    <TD bgColor=3D#000099>
+      <CENTER><B><FONT=20
+color=3D#ffffff>&nbsp;Constante&nbsp;</FONT></B></CENTER></TD>
+    <TD bgColor=3D#000099>
+      <CENTER><B><FONT =
+color=3D#ffffff>&nbsp;Valor</FONT></B></CENTER></TD></TR>
+  <TR>
+    <TD>&nbsp;SolidLn</TD>
+    <TD>
+      <CENTER>0</CENTER></TD></TR>
+  <TR>
+    <TD align=3Dleft>&nbsp;DottedLn</TD>
+    <TD>
+      <CENTER>1</CENTER></TD></TR>
+  <TR>
+    <TD>&nbsp;CenterLn</TD>
+    <TD>
+      <CENTER>2</CENTER></TD></TR>
+  <TR>
+    <TD>&nbsp;DashedLn&nbsp;</TD>
+    <TD>
+      <CENTER>3</CENTER></TD></TR>
+  <TR>
+    <TD>&nbsp;UserBitLn&nbsp;</TD>
+    <TD>
+      <CENTER>4</CENTER></TD></TR></TBODY></TABLE></CENTER><BR>&nbsp;=20
+<CENTER>
+<TABLE bgColor=3D#ffff99 border=3D1>
+  <TBODY>
+  <TR>
+    <TD bgColor=3D#ffffff></TD>
+    <TD bgColor=3D#000099>
+      <CENTER><B><FONT =
+color=3D#ffffff>NormalWidth</FONT></B></CENTER></TD>
+    <TD bgColor=3D#000099>
+      <CENTER><B><FONT =
+color=3D#ffffff>ThickWidth</FONT></B></CENTER></TD></TR>
+  <TR>
+    <TD bgColor=3D#000099>&nbsp;<B><FONT =
+color=3D#ffffff>Solidln</FONT></B></TD>
+    <TD><IMG height=3D3 src=3D"http://www.unimep.br/~vmdzilio/l1.gif"=20
+width=3D165></TD>
+    <TD><IMG height=3D5 src=3D"http://www.unimep.br/~vmdzilio/l4.gif"=20
+  width=3D165></TD></TR>
+  <TR>
+    <TD bgColor=3D#000099>&nbsp;<B><FONT =
+color=3D#ffffff>DottedLn</FONT></B></TD>
+    <TD><IMG height=3D3 src=3D"http://www.unimep.br/~vmdzilio/l2.gif"=20
+width=3D165></TD>
+    <TD><IMG height=3D5 src=3D"http://www.unimep.br/~vmdzilio/l5.gif"=20
+  width=3D167></TD></TR>
+  <TR>
+    <TD bgColor=3D#000099>&nbsp;<B><FONT =
+color=3D#ffffff>CenterLn</FONT></B></TD>
+    <TD><IMG height=3D3 src=3D"http://www.unimep.br/~vmdzilio/l3.gif"=20
+width=3D164></TD>
+    <TD><IMG height=3D5 src=3D"http://www.unimep.br/~vmdzilio/l6.gif"=20
+  width=3D166></TD></TR>
+  <TR>
+    <TD bgColor=3D#000099>&nbsp;<B><FONT =
+color=3D#ffffff>DashedLn</FONT></B></TD>
+    <TD><IMG height=3D3 src=3D"http://www.unimep.br/~vmdzilio/l2.gif"=20
+width=3D165></TD>
+    <TD><IMG height=3D5 src=3D"http://www.unimep.br/~vmdzilio/l5.gif"=20
+  width=3D167></TD></TR></TBODY></TABLE></CENTER>
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+SetPalette(ColorNum: Word; Color: Shortint);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Altera a entrada ColorNum =
+da=20
+paleta de cores para a cor especificada em Color. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+SetRgbPalette(ColorNum, RedValue, GreenValue, BlueValue: integer);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Altera a cor localizada em =
+ColoNum=20
+na paleta de cores com as coordenadas RGB (Red, Green, Blue) que =
+correspondem um=20
+valor de 0 a 63 cada uma. RedValue especifica a itensidade de Vermelho,=20
+GreenValue verde e BlueValue azul. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+SetTextJustify(Horiz, Vert: Word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Altera os valores de =
+justifica=E7=E3o=20
+de texto usados por OutText e OutTextxy. <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+SetTextStyle(Font, Direction: Word; CharSize: Word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Altera o Estilo de Texto =
+para=20
+sa=EDda no Dispositivo Gr=E1fico. <BR>(Isto inclui a Fonte e Tamanho das =
+letras e se=20
+a Dire=E7=E3o =E9 Vertical ou Horizontal). <BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+SetViewPort(x1, y1, x2, y2: integer; Clip: Boolean);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Altera os limites da =
+=E1rea gr=E1fica=20
+atrav=E9s de uma =E1rea retangular. Semelhante ao procedimento =
+=93Window=94 no modo=20
+texto, mas seu funcionamento s=F3 ocorre no modo gr=E1fico.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; O par=E2metro clip =
+especifica se os=20
+comandos gr=E1ficos que desenham algo na tela obedecer=E3o as =
+coordenadas (x1, y1)=20
+como sendo (0,0) ou n=E3o. <BR>Obs.:=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Caso n=E3o, tudo o que =
+sair fora do=20
+limite de SetViewPort ser=E1 cortado e n=E3o aparecer=E1 na tela.=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Caso for True, o desenho =
+ser=E1=20
+cortado, sen=E3o ser=E1 transportado para as novas coordenadas =
+<BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+SetVisualPage(Page: Word);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Altera o n=BA de p=E1gina =
+utilizada=20
+atualmente no modo Gr=E1fico. M=FAltiplas p=E1ginas s=E3o suportadas =
+apenas de EGA com=20
+256 Kb ou mais. <BR>Obs.: <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+
+Utilizada para criar anima=E7=F5es gr=E1ficas. <BR>&nbsp; <BR>&nbsp; =
+<BR><BR>
+<CENTER>
+<P><IMG height=3D227 src=3D"http://www.unimep.br/~vmdzilio/tview.gif"=20
+width=3D563></CENTER>
+<P><BR><BR><BR><BR><BR><BR>
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Procedure=20
+SetWriteMode(WriteMode: integer);=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Altera o modo de desenhar =
+linhas=20
+na tela. <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Afeta as =
+chamadas dos=20
+seguintes Procedimentos: DrawPoly, Line, LineRel, LineTo e Ret=E2ngulo. =
+<BR>&nbsp;=20
+
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+TextHeight(TextString: String): Word;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna a altura de uma =
+string em=20
+pixels (Leva em considera=E7=E3o o tamanho e estilo da fonte). =
+<BR>&nbsp;=20
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declara=E7=E3o</I>=20
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Function=20
+TextWidth(TextString: String): Word;=20
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retorna a largura de uma =
+string em=20
+pixels (Leva em considera=E7=E3o o tamanho e estilo da fonte). =
+<BR>&nbsp;=20
+<P>
+<HR width=3D"100%">
+<BR>&nbsp;=20
+<TABLE cols=3D3 width=3D"100%">
+  <TBODY>
+  <TR>
+    <TD>
+      <CENTER><A =
+href=3D"http://www.unimep.br/~vmdzilio/index.html#Topo"><IMG=20
+      height=3D23 src=3D"http://www.unimep.br/~vmdzilio/back.gif"=20
+      width=3D23></A></CENTER></TD>
+    <TD>
+      <CENTER><A =
+href=3D"http://www.unimep.br/~vmdzilio/grafico.html#Topo"><IMG=20
+      height=3D23 src=3D"http://www.unimep.br/~vmdzilio/up.gif"=20
+      width=3D23></A></CENTER></TD>
+    <TD>
+      <CENTER><A =
+href=3D"http://www.unimep.br/~vmdzilio/index.html#Topo"><IMG=20
+      height=3D23 src=3D"http://www.unimep.br/~vmdzilio/go.gif"=20
+      width=3D23></A></CENTER></TD></TR></TBODY></TABLE>
+<TABLE width=3D"62%">
+  <TBODY>
+  <TR>
+    <TD>
+      <HR width=3D"100%">
+    </TD></TR></TBODY></TABLE><B><I><FONT size=3D-1>D=FAvidas, =
+cr=EDticas, sugest=F5es???=20
+Clique <A=20
+href=3D"http://www.unimep.br/~vmdzilio/ldireta.html#Topo">aqui</A>.</FONT=
+></I></B>=20
+<BR>&nbsp; </BODY></HTML>
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/grafico.gif
+
+R0lGODlhHwFUANUAAAYBYxQPdxUReB0YgyQfiycijC0olTEslzk0nwoCqCMcsT44oikiszUutzo0
+uUE9pkM9vEpFrUlEvlJNsVxXt2FcvGdjv05IwFJNwVpVxGJdx2plyHJtzHh0zX140YF+zoJ90oSB
+z4qG1ZGO2JmW26Ge3aWi36up4bGu47m35sG/6cjH69DP7tLR78/P8NnZ8uDf9Ojo9/T0+/7+////
+/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAADQAIf4cVWxlYWQgR0lGIFNt
+YXJ0U2F2ZXIgVmVyIDIuMAAsAAAAAB8BVABABv9AmnBILBqPyKRyyWw6n9CodEqtWq/Y4mwr68pi
+4HD4RS6bzy+x2ivbzrJPN/urrsfmXTeXbR+jz319c25whYZZe3QxZSsrKY8nJyUkJCMilyIjIyWc
+nZ6VlpeUJJGPjStlYnirrHozq2JlLaemp6csf7mzjZAno5SRwcGjoZojv5QlJqW1qGlhrNGDrlOu
+iXjWh0OvimS8kiQiJI0bAObn6Onq6+sDvCTLKI8qtrYqKo/5+ff1/Sv4KVCcMDGK3LoFvESRULYs
+GMFKIjyMG8GuorkC+SyeY9EC3ol8/k7d00dyXj9AfczsslWS5MlUqvK8acJtzLdJIlKsoKDxnIH/
+Eyg8QBgqoagECBI+VlhXIIIFEfT+nQDhoaqJFRM0YkxRjp2ADitIdBBxSgSCnhURkIC0QYOGDCZS
+FEBrMZIDFCjQ0tvQoa8HEFQ95GxkIoIAuucWkF3BwlcyZZyIXdLpaMMAxAIoUA57bFktMtDazNTS
+xaYjXxEd0Y2AAkRRDBgycEjxAbE6jCRgXwCRIoJtdZpTrPWtkUCwER02kDpxWWOkEScI/FYH1EEk
+tI+QSphtgu6AtfpENLcooJGHDTlP0KUg7ARPtFdPiPvYCPQd0US4jJmVYmC4cV311MEJHjhAlAbC
+RaDgggv2RAAKJDgg4YDEWUTAI7FpsMEGHHTI/8GGHUBy1nRoDYiBhA40cF1PeBFlFAQBoRVJAw5w
+cEKFFUVwQgdEXRBbBkC6teGQRLb1VgYlyCXgCRjQiGKKGOzYUwGOiBOXTvblYYR+YHhzGk46UUTi
+mBcJpxtvOLITgXAcdAACJpfwtsJcGk0gCQcZeFBCJB3QFaIGRknwCHYpBOkWkIP29IgEF1zgQQrd
+0VWBPoXRdRUJGuSUwmE9GQDdcyNqVN4KJRxDnzNgyKQEN928wEt/D4mzGQkRDJDArbjmquutCkTQ
+QVQryPfmJZpQYskJLLxnEQUvQMrMIwKZMMk45HBq0QEbkBQqOwi1BlgjaHF0zC8jtMACWoxlYv9M
+KJOd0gEC1vY0wKSnlDrKJ8ZecsIphcVbkQARXNXICeMCRVkL9t23RTWsKtIlI/a0JDGwp+TysC4t
+ZIywGYH4AXE9I81zz8gUh8QCRxuTofHJLNjCUS4wZ8xyxjD/sZJIEqdQMiopP5OSGf0ARNLOHMek
+qjarWiONaNlQoccV1jTsRdRUV231wlJQk7XSq0RtRdTTaI3013IsLc3TY2NxNSFQuGL2202nLffc
+cbCqhiwR69NeeyXZUnSqU49myDV31wxTx7F4SUvOE4fkTMKA40f35IXU5AcvAlHSriMU+DvdAgKH
+tVwtKSNu+s8v7AJQJKik8K8JMLi68+oEjUD/mbJ0TQBuT2TI0wgukHf8dyBvl3a66WE7bfwirkIS
+zmJpomXAgtL9Nk4K4z6GDLtwwlksMp38gokHfUUitD4eAJmBhhx28Newcfa1YQaJarSBL2ONqwF4
+OQObgkILMYEApTWtfHXvgJm4VzxA4g+hReIhEEFg97K3wM1AbmpJa9WXRgCCfUmALiVAgQa0A5sS
+TuACL4LAk4ZCwh8JaUMasF30plOCsKgABZ4jEzrWdIILrKV6ZLLLijTyCPWtbzYpsIAO2VGBRpAA
+MFRxX5iWqI4NOBEYpkiYlkjTjW+EwwP/WA2EWpitPo0JNyz0AApmqI4HFcqFRTpSBlAogQyg/2c5
+whABBQ4QANuYqAGAVJF6emKXJ0lIIDI6gYQygAIRoCWEG9COj2IjD5HVoz/h2EAGcqJEjfxEkU5K
+kQOWYYCeUCBY86FMltrAxf04InMi2JeY0NJBAqkQRYB0gHIiQQIHjVGFHVhjT9YkAg21qSrk68A4
+SoCWAQxoGOiplEaCmYEnIVJRKWBUCTFwgfrVBQUS0gAKzKgRSPbIRxlYiyMH0JQJjAUFI3uEJVLA
+AXlFAgKhbAAEIgHEioBFPqRQ5TO2uKXlecl583QEnahYEUHRgwREIoEKslInVIpje9Q6AEMtYoH/
+ucUt3qxII9rUl75wYHdEVEGRQoS9jaJDd/9hQaZfdIKC8VBRAFfB3kJOpUVW0sRufthFPh4oGThB
+8agHzJ4yIlFJxu1NGE11mcxYAgkBkkuC6lrX937BkKc6ZCADFGAwmioxgeytIQZzKlGLitXsBTCt
+mwHZUAdSQE20lYLPqs8FCYqIazjseMgrHuKKxwfAGvawgmDF8cyG2I4R9q+NvU/gKNe2q1H2soeg
+GmY3y1mGSQ2yhsUG1jpLg7IRFm1aMK0XIhuaVrCNtLAlG1ATBzTHhaRnPosc0+ZGuMhGow5/sO3v
+UFazOrDhtbFNLhISQdvF9WcYyADFVn8h1kpW7HCSRW0VTFu41An3cbkFrndfZVZpRfcxe0L/K1T1
+AazS6Ra5yoXtbFX2Kv88rwQla6QIJsDf/vJ3LNRiySiYodfw6ha0rcWDeF31KizthAIQjnCELbAI
+xtAsY4vjJSlsEQ7//ndzjvDHy9BwsOBJdnmDFS183QYLx6pYcFAzKIOd9x/CLNSlA6AMMD6yGY2d
+oWc0U0nMzJVh/6ygBbNMBwFQ0Zhn6SNaEKEHOW0DHrSQgcAWxq1KzHUyW/gYJXZA8MVUUg8tGzi7
+o42DjB2ByYQm2aXsGIcKKNEQvEALL8II6wD3ZucnR+shodAJRdFhRVK1TzAAFF9EkvORUvYkAA9Q
+kAEKkK2QsqMRx1gqWfXmEAJ6ghMDCQYD/39n5he0rBEO/OqnQ81UfVw3t5Ndwh4e5sVLNGJbGmEN
+niNCCryYwKYaaQScSICCLtsWBSPY2XBJZVToROV8jCNJCTrQIZPyhccZIeTeqkm/aFNGBG4i1rrg
+dAJlfzcF00JrSYIxLU0k6bv9MEGx9mRdVIUmza1kHptRM468oAUBQLmAJBsVqKRIDDXnYd+GOqQc
+rGill0QMi04gvtEBfIRJGFjLjUlkF7wQSuFDWswIcjidQv9v3HFajAk2Ph0BUMtentHrvWFcWoPW
+2gP3YPk6HkQCpEyy0mXFi9BzZgL15YSNiAkRjxEzAAQoaAF97EkFGknsfnJckUO0yCMmif8BTQHb
+paMSy4ckmoKvM1QAOgEoj+2tsHxX+DRfVA1aWOOB18RmNrU5o3CM8iikp2MAV2LvCTjEP2n3hQJ2
+UmQGlBlqEyxgSRj4VDASOVZw3mWQGsGLhGCUAquvIwAhzI1RNPCRvKuDnROgwFXO8wizp0NHgw8k
+6W/Uk7CP7sg+46vl3o5JEYAAnjo/PVBcJIEykonnKKIQWtbCATgWSZP7y0cjKWCAqC/xj4HMekXs
+wkIWxkjbErKR380B8AiR0IgffT6RjpQkR1vkfhwIpYQaYKMps4NK/wsoPVYJY8sdFDVkoQIkpw6k
+0AEoAgEXUFIMtyHat3MQkny0pxEPIBz/67NwCsgB8fEbAbAAGyBA4wcAA1JNKNKA6yAPBVcUlrYO
+hSR+PfEAvmAgdqc+s3EPGhYRMMR+KeB+FcEe8WdI9OcePYEAVaJ/9sZXQrB7MwYOg+FIiPEAe/JU
+JDAB1qcVe1cUfTdM/3NoR/UoK4Br68AeIyABDDCGCnA/mGcR1NR930dEKfAj6oMBKagO8uB9ZfdI
+AhFJEoABv/c/esEVrdcpkSAC+AQBteSFpyds8OA7PUVzNadBp0EQIiAwGgVnuQYpRtcbPaE7JPAX
+4oYJOoE7FvEAh2eIaMgV2xSH6aAz6ocPhGJEXkeJ6BAfH4Ie+DCJlHgATmQqAnVvq4Ji/+MFKxDx
+ba43JghQQ/+wiciETDU0aDu4AhASQGFVEGFBjBFYEe6wAtTWIShlEY0AP3GyjSKFje6TTGNBDyvH
+UGBhUZlgVHKyAh9YiVcUULsIOPi2XLunb/UVK5lwKvDGEr4wLEolVsuwDEkiZEEGNFGFMwFhX/vS
+j/hTPo5DXMLxC6mzMjPTM2KVZybwYxpzkC/QVWFVQKIAT/0oEo7xVnAFLWCVL9BRkgPzHx5BOj3l
+U1HAXImzEpwGVuEDPl0laqM2XCxzanmzD/VgOAzWYM/FamClXg/EZyUxMiIBbUNTklKpMyJmbAq5
+kEspQJyQkWP1k8TFkVTVC40XVqxGVv+vBmtHozYNYwdogDAtI5RxCV7Dw1outlpuaZRfZpQmtmBn
+ZpeG9ZYV2ZGpgwbEg5d+KQsp45HY9V6MiDR6oFiB5VpXUzzatQ2qpWBr8FicGQ1gc1pW81uH+WL1
+yGIttpkvFl+quZqs2Zqu+ZqwGZuyOZvb9ZmkCV+0mVlcIxNrU4+5+Zv5kZmFlVhdg5ukZZq3yQTC
+OQcJxpnGCZyrmZmAiZq8yVnLuTyeWTWaOZ3UGTi+CZ3W2ZaJqTKmFpS4YGZhFmt041eH9TZ5GTN8
+eZe7BZ7hOZxjFjRVyV5lVpfH9Zh9ZZ9jZpjGxZzdpTgu6Q8eOaDzSZ+TY5MXg5Nz5RD/n9YJSpmQ
+BYaaz+k04jlmN3MKLgBmgfAxbKaVXsVUfdYSRRk86smgY+Og+DiikVBXWJVUeFVvj2M0TNOblYmY
+FzOUJpGWBvYxKgkOxmJXWeVWXNWT2AYse8WbOpqhtVk1l+Wg9LVvREos/EiVKGAvO1VvjdmZjOUx
+CkmXwVMzqhMQ5rUWB4ptOrMzwFNiagmmYfOdwXmdS3OZcDBrPbpvk2AJoRMWExB8XsGBm+EYWLYx
+3Ck8ZHBqKkkGfncCMbASWLlvD0EZjkcXANMIBbCpnNqpnEoGVnmjiXpiToqcKNae/emfbYOYB5U5
+NdYIoLhEMCU6WAY8fGk4HqMyp7Y6/5FABsG3ZKBKlP8wVLVDLY/3GyGiAlb2AmvHGMNzq3WJo9tZ
+oLianmuZNazaPP2BE9Rif3CWY05Eb81woPUQlFyWNzFKCrOQQwuQAi1DZw0hfekaCo0wgFqHiuiA
+MOK6GSizMuQKoohzBi4poAlGp8uFl60KiSNgELCoDhHAGHSWkjkjdCfqbSqZprEkd+kAUwQCkI/B
+lZrjewOiAu+oDhOIr+dwZBGrnyHzZCW6aV7Gl5fksk7pamlpNAYbnMbzf5C4LzjUsPcHscnglQRZ
+QOfFVV7ZaSLpe7whF55aacVkgZyICdxDPhvyCIJ6Dt9RecKBtZ76tVSyAgnUVUKntP/bYwznVWc/
+CpSTGqEQRC5I6hFpdQqI2lo524imAYwZy0yIQQAbQLFCtxSIgRBiu1UgC7fGEBEdRBknwx8QZKS+
+Jxg75lRWZYMklYzUVhXJgbLmEAncBBsi6ABHC41MFW4JdF6hEJNxNZa+MC5PuGkkUV4suSehOrOS
+YAnj4hkWpJYGi4Taym/OiBjsASEj1H33AynNBDpiOyz7Ih8zmmy8MAHjMQARsBhhQRW/ZwsjQAEP
+sKnswE4F8AAU8AEiQwKzyID/U1Leug4kVVIdN07qG78f8AEh0Ah94Y1w8qckQAEIUABfx04LUAHW
+e4wR2x6H66e2YAIbEAEF4C/sFAH/HWgLBDO585hdSYCEtbYYw5gOI9BIxFdwlQYATecrgbcPkEKO
+yuRwFoER9WQRTfRE9JACtqhDLtgfOJi1iXQX/pZSFqi+UOEIzDgdBUAtOhVd7HIKsYoYE2CpnbF2
+ddt2W+J/zYMCkFhD67sOfyuIRdEoJVRwwxARc2QUzhdRE6UVOngQbLYCb8ZQOZYCrqFxSyREZ1gR
+RQRyUJECVzwmhGsC3UMVP7zGZFJo9mIwMkePBdVFcMdB8DTD1ogXYgwbQFcSgEt0roiJOlQAI1HG
+QBsXyoECnvcbckwobpgBH8GEsBiAmkttOsG3lChyMVnI14q3XXJzYYQWDzBG2iQb/7RBJhhRAhkA
+G0enQ2jXtXmMDp6yN0G8DgaQOdERx1g3x+ywKNokDyUrwgryABtMaJVxtZb8aE73AFNoEQ+rxomo
+SryYHzYHd6nhOnMXFDGId7y8d41yhXQRABUQFyLAwOUmKyOwwAysc9AhAg7AAAqgS/BwrBYBHZI3
+edpWeeBEgnKYAiy0FoLrSXYWDknSH/ZqDmThAaSXAkmsDs/0RMthyuKMiE6cezQpy7yHcBqba0Hh
+c5C8y3pHAkcBAWpUsumRHCPQEDDEAcOCRXgmDE8YDB0AdSXCJIEkSIkkf4cEzSpoeRjgcaZExUfB
+KD5SaQKAehQQif0gAhvAGxRnEf+kEH9LbSNjXRHjIG8BVR/nfITp3HtgpAI4bA48J0kYYHxjciE9
+p0IeUI0uLBzoBHIwBCSxEYkkKhYRcMZ+pNTZB9XUoUibNxQ6nMMOEEzFbA4WhwJXnYduOFeVYLVD
+cijDMUzy4dQNEEsfqDv5t3b8h86I3GZy8kEyggIZ4CJ6TSLINyGATceFEiTqxyH5QALgTIkmMn9M
+TUjg5CJDsYZ1cQI0woK5Jh89MsovFNxtASRJUtchiNpRktkAgH9WkkUDtdKy7A34AInLRBcueAIq
+NBQY8CgBYVbC4EsRwtsfiBtAsnDV9iFIZNK2YQCfnA4h+CQQnQ5zeIKcCwAzUiP/vb0OOiIU56c+
+6Rfch4IkSjJNJ6ABqE164C3e8EDehgzbeYsaclKysBe6TwJIY0jKkI0Ou33ZwlSJIlCBl+sXt+Yd
+ExBLS/mBBT6CL44O0jxJKLTghRRMAVIRxsHZeL3f7AWVqMZLytHNOeILqA0dq41KbV2E5q2n3uA8
+tjYnSRcMItB8ssHjkRDSSiYcaTTj4uxRWhhF+6LmWrscI5ABDaAACgAPA44OachCVM2G6GTYcMjO
+mWd5jLTDLhwJnd0olUaKItwUSRIiac0OAb3UDdBBgKwOE6eLbj3iJE5rj6Demvob01NSC9zn91eF
+EkDPb97P7gM/VKET3L3hY8gA/w1ghu/4J4Gy4EVkRIhi6PeqHUlC51obQo/APwDODgiAD6ScRGjB
+HrwUDMZuDlbU2iKeKr6JhPzRewurwkDLFOhm2MFcUWKBaN2jE4zMDrU0DNUcIhswSYIi7L593SBF
+79HchqD7CNUc3v47uPbbFo8A3ucQAASQzX6OiCagiCr9mHq6CN3uGINRh+F+DgJAviowAh9V7hah
+OyXgsflyFZFS8SGSPuqz4HvBIQtYy2xoKM++7BuVjiBgbc2L8L8Brq3tO6gwcxfsu99QO4PhjkBb
+jAmhvhwwDsmsDroDUOhlLDox8iTCTnVyQ0TC8tyIjclIPuB4aSug8h7ChZs+Jv9NpI5xUhU6QfFL
+BK6iI4+41/Cy5vOUChEN2fU2jw4J4LDGiEpTS247YUotIBxJm67UQgJ1bw4CgESVrg7xUVJbvw7C
+RiyY0Pjq0I3sKBinsAEb/eYDc7qKtjkkUNdMsRhFTMhsh0E04YsztpAhq6a2ANYYIIa3fuuwUY71
+4LzEcrQpUJFCKVWMwKacNi0ctgGB2qkRsOOb8T95b1sn8z+XwDIRmTJNTwKysPtSlTFHm7r1wMf8
+dQBfy19B/w5D2xDi326yksAdMAH9S/zu9KfCIQ7i2ghPbPpOMFvMI1SwMi3DBg8lLG19Cj8UBASm
+0wmVMqZQqOHJVCI9oaTSsGj/XF2xV5Vx6HwKj+EhSQQyn0VptWgULZVM8aY36p5Sq0jlsFl/voXw
+kpKY+khG1EiYwhjHDv+WGCX5oBDbhiRTxhBFvjBTrlpeXmJKY2RkZmZoWFtdX1tVUWVMY0ZfsI6W
+6J5GfH+B6wJPwlSyjrcyGbFYbp1bWHK5uvyq697ghpOUjwbxGI2PV5LDBvOMwpHF+HitIYXysljm
+57PIl0zco4aPsG5rZ6mCNZCgLFS1bI1qkYXRniUPl5xLF6qFKGe3Foo7ZvEfwoSjjnETmWmiRpPi
+WHB8Vu/klZQXFUKz19DhIHBZVMLEGJKmzWVYOCIMuIpg0YGqZszyeLFlU50euJfqdAaVaimYTU3S
+q5hTateLVb1+BXsxI9ZQYqvWumoWpsehRI3GLZhUKdWwT6vOqpsWql6/e6PencqXcGHDaQ/yFUyK
+6l+/Y8M2fiuXslykfw9LdryZM2eknw0+zsy3c2nTp1GLHn3qL2jQmEe3FliZdu3PqTe7hnvUNSrX
+lV/jNq1bt1/ix2/7/s07ufBUn4E3Rw26dnXrzJHPvr79enak3MGHt5xd/Fzd5dGnV7+efXv37+GX
+DwIAOw==
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/livro.gif
+
+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
+2ghIdCXHiYVc1Ov2GAIAOw==
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/pixel.gif
+
+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
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/texture.gif
+
+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
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/l1.gif
+
+R0lGODlhpQADALMAAAAAAP///////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAACH+HFVsZWFkIEdJRiBTbWFydFNhdmVyIFZlciAyLjAALAAAAAClAAMAQAQiMMhJq7046827
+/2AojmRpnmhqAWzrvnAsz3Rt33iu73QQAQA7
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/l4.gif
+
+R0lGODlhpQAFALMAAAAAAP///////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAACH+HFVsZWFkIEdJRiBTbWFydFNhdmVyIFZlciAyLjAALAAAAAClAAUAQAQwMMhJq7046827
+/2AojmRpnmhqAWzrvnAsz3Rt33iu77TE/8CgcEjU+YrIpHKZDEQAADs=
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/l2.gif
+
+R0lGODlhpQADALMAAAAAAP///////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAACH+HFVsZWFkIEdJRiBTbWFydFNhdmVyIFZlciAyLjAALAAAAAClAAMAQAQ0MMhJq7046827
+/2AojmRpnmhqASxAte4Evy3N2rE0yzV/+7nATtcj/ozBobC4PDaTTGUtAgA7
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/l5.gif
+
+R0lGODlhpwAFALMAAAAAAP///////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAACH+HFVsZWFkIEdJRiBTbWFydFNhdmVyIFZlciAyLjAALAAAAACnAAUAQARaMMhJq7046827
+/2AojmRpnmi6AcDEttLrsjMcyDGd2/it+7xfbygsBo+15E4JZBKRLsrPJ7VRZ9UsdpvTdrnXrzhM
+npqtZ28ZbVWnwe9xfO1m1+9wex4vh0UAADs=
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/l3.gif
+
+R0lGODlhpAADALMAAAAAAP///////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAACH+HFVsZWFkIEdJRiBTbWFydFNhdmVyIFZlciAyLjAALAAAAACkAAMAQAQ1MMhJq7046827
+/2AojmRpnmhKASwgsW/rBjAtx3GL27qd18Cbjxf8zYI9ZJF4bCadS1kzEAEAOw==
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/l6.gif
+
+R0lGODlhpgAFALMAAAAAAP///////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAACH+HFVsZWFkIEdJRiBTbWFydFNhdmVyIFZlciAyLjAALAAAAACmAAUAQARGMMhJq7046827
+/2AojmRpnmiKAWzrslkbv/QM2LS8wnuuXz+Lz2XTDIMVJOXIAzaFzGJvKHUeq1ZqD+fDJqPbaTec
+HVszEQA7
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/tview.gif
+
+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
+fAA4gAToJREAADs=
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/back.gif
+
+R0lGODlhFwAXALMAADNmMwCZZpnMmf///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAACH+HFVsZWFkIEdJRiBTbWFydFNhdmVyIFZlciAyLjAALAAAAAAXABcAQARecIhJq70yaA2G
+l0AojoGwnYJnniywshwAn+6Wfniev3O/1b5gANhSBYkdnRLHKzEvF9/kCBpZr6OM0Efcwro0bQ88
+/DRbvORSuVKv2ag3nHUTz8ia1Jm29w4FMn4tEQA7
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/up.gif
+
+R0lGODlhFwAXALMAADNmMwCZZpnMmf///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAACH+HFVsZWFkIEdJRiBTbWFydFNhdmVyIFZlciAyLjAALAAAAAAXABcAQARbcIhJq70DhL3F
++CCocYEwkmWYod3Jei5qsmkYt7Rn5zftzy9VD1hTGU9Ekk7EywmdgKgUsPwEplJJzyfbbryl7VJ8
+qzK7SuOTQ7SoKsjhGh3cveR2umyuxJ9lEQA7
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/go.gif
+
+R0lGODlhFwAXALMAADNmMwCZZpnMmf///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAACH+HFVsZWFkIEdJRiBTbWFydFNhdmVyIFZlciAyLjAALAAAAAAXABcAQARccIBJq7ViiM37
+HqAWjKMAkCiZSWl5tqoAl2Ft329gzjy6973fbCVrrW7IUFEXuFSOLF8ONuFlPNgsJwqkCrvGqVEE
++45BS1VynYaucbQ3XCVOHetmO9deB7v8ZREAOw==
+
+------=_NextPart_000_0000_01C78986.18080430
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.unimep.br/~vmdzilio/marca.gif
+
+R0lGODdhuAC1APcAAAAAAAEBAQICAgMDAwQEBAUFBQYGBgcHBwgICAkJCQoKCgsLCwwMDA0NDQ4O
+Dg8PDxAQEBERERISEhMTExQUFBUVFRYWFhcXFxgYGBkZGRoaGhsbGxwcHB0dHR4eHh8fHyAgICEh
+ISIiIiMjIyQkJCUlJSYmJicnJygoKCkpKSoqKisrKywsLC0tLS4uLi8vLzAwMDExMTIyMjMzMzQ0
+NDU1NTY2Njc3Nzg4ODk5OTo6Ojs7Ozw8PD09PT4+Pj8/P0BAQEFBQUJCQkNDQ0REREVFRUZGRkdH
+R0hISElJSUpKSktLS0xMTE1NTU5OTk9PT1BQUFFRUVJSUlNTU1RUVFVVVVZWVldXV1hYWFlZWVpa
+WltbW1xcXF1dXV5eXl9fX2BgYGFhYWJiYmNjY2RkZGVlZWZmZmdnZ2hoaGlpaWpqamtra2xsbG1t
+bW5ubm9vb3BwcHFxcXJycnNzc3R0dHV1dXZ2dnd3d3h4eHl5eXp6ent7e3x8fH19fX5+fn9/f4CA
+gIGBgYKCgoODg4SEhIWFhYaGhoeHh4iIiImJiYqKiouLi4yMjI2NjY6Ojo+Pj5CQkJGRkZKSkpOT
+k5SUlJWVlZaWlpeXl5iYmJmZmZqampubm5ycnJ2dnZ6enp+fn6CgoKGhoaKioqOjo6SkpKWlpaam
+pqenp6ioqKmpqaqqqqurq6ysrK2tra6urq+vr7CwsLGxsbKysrOzs7S0tLW1tba2tre3t7i4uLm5
+ubq6uru7u7y8vL29vb6+vr+/v8DAwMHBwcLCwsPDw8TExMXFxcbGxsfHx8jIyMnJycrKysvLy8zM
+zM3Nzc7Ozs/Pz9DQ0NHR0dLS0tPT09TU1NXV1dbW1tfX19jY2NnZ2dra2tvb29zc3N3d3d7e3t/f
+3+Dg4OHh4eLi4uPj4+Tk5OXl5ebm5ufn5+jo6Onp6erq6uvr6+zs7O3t7e7u7u/v7/Dw8PHx8fLy
+8vPz8/T09PX19fb29vf39/j4+Pn5+fr6+vv7+/z8/P39/f7+/v///ywAAAAAuAC1AAAI/gD/CRxI
+sKDBgwgTKizoj5/Dfv0cDvTnT2BFixMXatzIsaPHjyBDipy4jx/Eif3+nfznL2W/ihRZpmRJ8eLI
+mzhz6tx5sGHKmkBbvowpEKJNi0GBIoV5lKfTp1BF7tv3M6lVpjavKqWJdWvUr2DDQhx6daLXpVq7
+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
+AQEAADs=
+
+------=_NextPart_000_0000_01C78986.18080430--
